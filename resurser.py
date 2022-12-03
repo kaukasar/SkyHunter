@@ -1,6 +1,38 @@
+import math
 import pygame
 import random
 from pygame import mixer
+class powerup:
+    def __init__(self, slumpX):
+        self.bredd = 50
+        self.höjd = 50
+        self.powerup = pygame.transform.scale(pygame.image.load('blomma.png'), (self.bredd, self.höjd))
+        self.powerupRektangel = pygame.Rect(slumpX, -self.höjd, self.bredd+5, self.höjd+5)
+        self.fallHastighet = random.randrange(2, 6)
+
+    def fallLinje(self):
+        self.powerupRektangel.y += self.fallHastighet
+        self.powerupRektangel.x += math.sin((self.powerupRektangel.y-100)/200)
+    def getPosY(self):
+        return self.powerupRektangel.y
+    def getPosX(self):
+        return self.powerupRektangel.x
+
+class stjärna:
+    def __init__(self, slumpX):
+        self.bredd = 45
+        self.höjd = 45
+        self.stjärna = pygame.transform.scale(pygame.image.load('stjärna.png'), (self.bredd, self.höjd))
+        self.stjärnaRektangel = pygame.Rect(slumpX, -self.höjd, self.bredd+10, self.höjd+10)
+        self.fallHastighet = random.randrange(2, 8)
+
+    def fallLinje(self):
+        self.stjärnaRektangel.y += self.fallHastighet
+        self.stjärnaRektangel.x += 4*math.sin(self.stjärnaRektangel.y/200)
+    def getPosY(self):
+        return self.stjärnaRektangel.y
+    def getPosX(self):
+        return self.stjärnaRektangel.x
 
 class meteorit:
     def __init__(self, bredd, höjd, bildKälla, slumpX):
