@@ -16,6 +16,7 @@ class svårighetsgrad:
             self.grad -= 0.1
         elif self.grad > 0.02 and self.grad < 0.12:
             self.grad -= 0.01
+        print(round(sv.grad * 100))
 
 bg = pygame.image.load('quasar.jpg')
 fönsterBredd, fönsterHöjd = 1200, 1024
@@ -33,8 +34,8 @@ FPS = 60
 def meteoritGenerator():
     try:
         typ = random.choice(meteoritTyper)
-        xKoordinat = random.randrange(30, fönsterBredd-70)
-        m = meteorit(random.randrange(50, 80), random.randrange(50, 80), typ, xKoordinat)
+        xKoordinat = random.randrange(1, fönsterBredd-60)
+        m = meteorit(random.randrange(45, 85), random.randrange(45, 85), typ, xKoordinat)
         meteoritLista.append(m)
         tråd = threading.Timer(sv.grad, meteoritGenerator)
         tråd.daemon = True # Detta behöver vara satt för att tråden ska dö när man anropar sys.exit()
@@ -52,18 +53,17 @@ def explosionGenerator(meteorit):
         pass
 
 def stjärnGenerator():
-    st = stjärna(random.randrange(50, fönsterBredd-90))
+    st = stjärna(random.randrange(50, fönsterBredd-400))
     stjärnLista.append(st)
-    print(round(sv.grad * 100))
 
 def powerupGenerator():
-    power = powerup(random.randrange(100, fönsterBredd-140))
+    power = powerup(random.randrange(220, fönsterBredd-250))
     powerupLista.append(power)
 
 meteoritGenerator()
 schedule.every(sv.ökningsTid).seconds.do(sv.öka)
 schedule.every(int(sv.ökningsTid*1.4)).seconds.do(stjärnGenerator)
-schedule.every(int(sv.ökningsTid*4)).seconds.do(powerupGenerator)
+schedule.every(int(sv.ökningsTid*3.9)).seconds.do(powerupGenerator)
 
 def gameOver(poäng):
     try:
@@ -129,7 +129,7 @@ def rita(poäng):
 def main():
     poäng = 0
     skottTyp = 1
-    mixer.Sound('technoTF.mp3').play(-1).set_volume(0.2)
+    mixer.Sound('technoTF.mp3').play(-1).set_volume(0.19)
     klocka = pygame.time.Clock()
     speletIgång = True
     while speletIgång:

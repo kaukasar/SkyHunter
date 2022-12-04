@@ -8,7 +8,7 @@ class powerup:
         self.höjd = 50
         self.powerup = pygame.transform.scale(pygame.image.load('blomma.png'), (self.bredd, self.höjd))
         self.powerupRektangel = pygame.Rect(slumpX, -self.höjd, self.bredd+5, self.höjd+5)
-        self.fallHastighet = random.randrange(2, 6)
+        self.fallHastighet = random.randrange(2, 5)
 
     def fallLinje(self):
         self.powerupRektangel.y += self.fallHastighet
@@ -41,7 +41,7 @@ class meteorit:
         self.bildkälla = bildKälla
         self.meteorit = pygame.transform.scale(pygame.image.load(bildKälla), (self.bredd, self.höjd))
         self.meteoritRektangel = pygame.Rect(slumpX, -self.höjd, self.bredd-self.bredd/10, self.höjd-self.höjd/10)
-        self.fallHastighet = random.randrange(4, 6)
+        self.fallHastighet = random.randrange(3, 6)
 
     def fallLinje(self):
         self.meteoritRektangel.y += self.fallHastighet
@@ -94,7 +94,7 @@ class rymdskepp:
         self.startPosY = fönsterHöjd - self.skeppHöjd*2
         self.hastighet = 5
         self.rymdskepp = pygame.transform.scale(pygame.image.load('skeppet.png'), (self.skeppBredd, self.skeppHöjd))
-        self.rektangel = pygame.Rect(self.startPosX, self.startPosY, self.skeppBredd-self.skeppBredd/3, self.skeppHöjd-self.skeppHöjd/3)
+        self.rektangel = pygame.Rect(self.startPosX, self.startPosY, self.skeppBredd-self.skeppBredd/2.5, self.skeppHöjd-self.skeppHöjd/2.5)
 
     def getPosX(self):
         return self.rektangel.x
